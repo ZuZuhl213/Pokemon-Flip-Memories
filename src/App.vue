@@ -1,22 +1,60 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <img alt="Vue logo" src="./assets/images/ZuZu.png" v-if="status === 'default'">
+  <main-screen v-if="status === 'default'" @onStart="onHandleBeforeStart($event)"/>
+  <interact-screen v-if="status === 'match'"/>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import MainScreen from './components/MainScreen.vue'
+import InteractScreen from './components/InteractScreen.vue'
+import './assets/styles/global.css'
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    MainScreen,
+    InteractScreen,
+  },
+  data() {
+    return {
+      settings: {
+        totalOfBlock: 0,
+        cardcontext: [],
+      },
+
+      status: "default",
+
+    }
+  },
+  methods: {
+    onHandleBeforeStart(config) {
+      // Lấy cấu hình từ component MainScreen
+      // và chuyển sang trạng thái "match"
+      // để
+      // hi
+      //ển
+      // thị
+      // component InteractScreen
+      // console.log("running", config)
+      console.log("running", config);
+      this.settings.totalOfBlock = config.totalOfBlock;
+
+      const firstCard = Array.from({ length: this.settings.totalOfBlock /2 }, (_, i) => i + 1);
+      const secondCard = [...firstCard];
+      const cards = [...firstCard, ...secondCard];
+
+      console.log(cards);
+
+      this.status = "match";
+      console.log("running", config);
+
+    }
   }
 }
 </script>
 
 <style>
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;

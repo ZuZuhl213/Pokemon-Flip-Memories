@@ -1,0 +1,20 @@
+/* variable css */
+
+:root {
+    --dark: #121212;
+    --light: #ffffff;
+    --fornt: "Odibee Sans", sans-serif;
+}
+
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    /* background-color: yellow; */
+    font-family: var(--fornt);
+    font-size: 16px;
+    width: 100%;
+}
