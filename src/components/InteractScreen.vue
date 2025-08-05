@@ -1,5 +1,5 @@
 <template>
-    <div class="screen">
+    <div class="screen" :data-grid="gridSize">
         <card-flip 
         v-for="(card, index ) in cardcontext" 
         :key="index" 
@@ -30,6 +30,14 @@ export default {
         },
         isGameOver() {
             return this.matchedPairs === this.totalPairs;
+        },
+        gridSize() {
+            const total = this.cardcontext.length;
+            if (total === 16) return "4x4";
+            if (total === 36) return "6x6";
+            if (total === 64) return "8x8";
+            if (total === 100) return "10x10";
+            return "4x4";
         }
     },
 
@@ -113,13 +121,38 @@ export default {
     z-index: 2;
     background-color: var(--dark);
     color: var(--light);
-
+    display: grid;
+    gap: 0.5rem;
+    padding: 1rem;
+    box-sizing: border-box;
+    justify-content: center;
+    align-content: center;
+    overflow: hidden;
 }
 
-.card_inner {
-    width: 100%;
-    display: flex;
-    flex-wrap: wrap;
-    margin: 2rem auto;
-    }
+/* Grid layouts cho từng difficulty */
+.screen[data-grid="4x4"] {
+    grid-template-columns: repeat(4, 90px);
+    grid-template-rows: repeat(4, 120px);
+    gap: 1rem;
+}
+
+.screen[data-grid="6x6"] {
+    grid-template-columns: repeat(6, 80px);
+    grid-template-rows: repeat(6, 100px);
+    gap: 0.8rem;
+}
+
+.screen[data-grid="8x8"] {
+    grid-template-columns: repeat(8, 70px);
+    grid-template-rows: repeat(8, 90px);
+    gap: 0.6rem;
+}
+
+.screen[data-grid="10x10"] {
+    grid-template-columns: repeat(10, 60px);
+    grid-template-rows: repeat(10, 75px);
+    gap: 0.4rem;
+    padding: 0.5rem;
+}
 </style>

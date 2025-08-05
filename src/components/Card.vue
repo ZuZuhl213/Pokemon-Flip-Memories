@@ -34,13 +34,13 @@ export default {
     data() {
         return {
             isFlipped: false,
-            isDisabled: false,
+            // isDisabled: false,
         }
     },
 
     methods: {
         onToggleFlipCard() {
-            if(this.isDisabled) return false;
+            // if(this.isDisabled) return false;
             this.isFlipped = !this.isFlipped;
             if(this.isFlipped) this.$emit("onFlip", this.card);       
         },
@@ -53,11 +53,10 @@ export default {
 
 <style lang="css" scoped>
 .card {
-    display: inline-block;
-    margin-right: 1rem;
-    margin-bottom: 1rem;
-    width: 90px;
-    height: 120px;;
+    width: 100%;
+    height: 100%;
+    min-width: 60px;
+    min-height: 75px;
 }
 
 .card-inner {
@@ -66,17 +65,14 @@ export default {
     transition: transform 1s;
     transform-style: preserve-3d;
     position: relative;
-
 }
 
-.card.disabbled .card-inner {
+.card.disabled .card-inner {
     cursor: default;
-
 }
 
 .card-inner.is-flipped {
     transform: rotateY(-180deg);
-
 }
 
 .card-face {
@@ -85,27 +81,21 @@ export default {
     height: 100%;
     backface-visibility: hidden;
     overflow: hidden;
-    border-radius: 1rem;
+    border-radius: 0.5rem;
     padding: 1px;
-    box-shadow: 0 3px 10px 3px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 2px 8px 2px rgba(0, 0, 0, 0.2);
 }
 
 .card-face-back {
     transform: rotateY(180deg);
     background-color: var(--light);
-
-}
-
-.card-face-front {
-    /* background-color: var(--light);
-    transform: rotateY(-180deg); */
 }
 
 .card-face-front .card-content {
     background: url('/home/hoang/pokemon-flip-memories/src/assets/images/icon_back.png') no-repeat center center;
     width: 100%;
     height: 100%;
-    background-size: 40px 40px;
+    background-size: 30px 30px;
 }
 
 .card-face-back .card-content {
