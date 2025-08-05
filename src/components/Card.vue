@@ -1,11 +1,17 @@
 <template>
-    <div class="card">
-        <div class="card-inner" :class="{'is-flipped' : isFlipped }" @click="onToggleFlipCard">
+    <div class="card"
+        :class="{'disabled': isDisabled}">
+        <div class="card-inner" 
+        :class="{'is-flipped' : isFlipped }" 
+        @click="onToggleFlipCard">
             <div class="card-face card-face-front">
-                <div class="card-content">Front</div>
+                <div class="card-content"></div>
             </div>
             <div class="card-face card-face-back">
-                <div class="card-content">Back</div>
+                <div 
+                class="card-content" 
+                :style="{backgroundImage: `url(${require('@/assets/' + imgBackFaceUrl)})` }">
+                </div>
             </div>
         </div>
     </div>
@@ -15,16 +21,31 @@
 export default {
     name: 'CardFlip',
 
+    props: {
+        imgBackFaceUrl: {
+            type: String,
+            required: true,
+        },
+        card: {
+            type: [String, Number, Object, Array]
+        },
+    },
+
     data() {
         return {
             isFlipped: false,
+            isDisabled: false,
         }
     },
 
     methods: {
         onToggleFlipCard() {
+            if(this.isDisabled) return false;
             this.isFlipped = !this.isFlipped;
-                
+            if(this.isFlipped) this.$emit("onFlip", this.card);       
+        },
+        onFlipBack() {
+            this.isFlipped = false;
         }
     }
 }
@@ -48,6 +69,11 @@ export default {
 
 }
 
+.card.disabbled .card-inner {
+    cursor: default;
+
+}
+
 .card-inner.is-flipped {
     transform: rotateY(-180deg);
 
@@ -65,14 +91,28 @@ export default {
 }
 
 .card-face-back {
-    tranform: rotateY(-180deg);
+    transform: rotateY(180deg);
     background-color: var(--light);
 
 }
 
 .card-face-front {
-    background-color: var(--light);
-    transform: rotateY(180deg);
+    /* background-color: var(--light);
+    transform: rotateY(-180deg); */
 }
 
+.card-face-front .card-content {
+    background: url('/home/hoang/pokemon-flip-memories/src/assets/images/icon_back.png') no-repeat center center;
+    width: 100%;
+    height: 100%;
+    background-size: 40px 40px;
+}
+
+.card-face-back .card-content {
+    background-size: contain;
+    background-position: center center;
+    background-repeat: no-repeat;
+    height: 100%;
+    width: 100%;        
+}
 </style>
