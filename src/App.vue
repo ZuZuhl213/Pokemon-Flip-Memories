@@ -1,5 +1,5 @@
 <template>
-  <img alt="Vue logo" src="./assets/images/ZuZu.png" v-if="status === 'default'">
+  <img class="logo" alt="Vue logo" src="./assets/images/ZuZu.png" v-if="status === 'default'">
   <main-screen 
   v-if="status === 'default'" 
   @onStart="onHandleBeforeStart($event)"/>
@@ -115,6 +115,19 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+  margin: 0;
+  padding: 0;
+}
+
+.logo {
+  width: 300px;
+  height: auto;
+  margin: 20px auto;
+  display: block;
+  position: absolute;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
 }
 </style>

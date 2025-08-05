@@ -49,4 +49,12 @@ export default {
 .menu-btn {
     background: #95a5a6;
 }
+
+h1 {
+    font-size: 3rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
 </style>

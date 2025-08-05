@@ -17,4 +17,9 @@ body {
     font-family: var(--fornt);
     font-size: 16px;
     width: 100%;
+    background-color: var(--dark);
+    color: var(--light);
+}
+html {
+    background-color: var(--dark);
 }

@@ -132,26 +132,26 @@ export default {
 
 /* Grid layouts cho từng difficulty */
 .screen[data-grid="4x4"] {
-    grid-template-columns: repeat(4, 90px);
-    grid-template-rows: repeat(4, 120px);
+    grid-template-columns: repeat(4, 110px);
+    grid-template-rows: repeat(4, 140px);
     gap: 1rem;
 }
 
 .screen[data-grid="6x6"] {
-    grid-template-columns: repeat(6, 80px);
-    grid-template-rows: repeat(6, 100px);
+    grid-template-columns: repeat(6, 100px);
+    grid-template-rows: repeat(6, 120px);
     gap: 0.8rem;
 }
 
 .screen[data-grid="8x8"] {
-    grid-template-columns: repeat(8, 70px);
-    grid-template-rows: repeat(8, 90px);
+    grid-template-columns: repeat(8, 85px);
+    grid-template-rows: repeat(8, 105px);
     gap: 0.6rem;
 }
 
 .screen[data-grid="10x10"] {
-    grid-template-columns: repeat(10, 60px);
-    grid-template-rows: repeat(10, 75px);
+    grid-template-columns: repeat(10, 75px);
+    grid-template-rows: repeat(10, 90px);
     gap: 0.4rem;
     padding: 0.5rem;
 }
